@@ -171,3 +171,70 @@
               font-size: 1rem;
           }
       }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.puzzle-piece {
+    width: 80%;
+    margin: 20px 0;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0.7;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.puzzle-piece:hover {
+    opacity: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+#nav-piece {
+    display: flex;
+    justify-content: space-around;
+}
+
+#nav-piece a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+#footer-piece {
+    text-align: center;
+}
+
+#footer-piece p {
+    font-size: 0.9em;
+    color: #555;
+}
+JavaScript (to handle interactions like clicks and showing hidden content)
+javascript
+Copy code
+document.addEventListener('DOMContentLoaded', () => {
+    // Function to unlock content when a puzzle piece is clicked
+    const unlockPiece = (piece) => {
+        piece.querySelectorAll('.hidden').forEach(element => {
+            element.classList.remove('hidden');
+        });
+        piece.classList.add('unlocked');
+    };
+
+    // Add event listeners to puzzle pieces
+    const puzzlePieces = document.querySelectorAll('.puzzle-piece');
+    puzzlePieces.forEach(piece => {
+        piece.addEventListener('click', () => unlockPiece(piece));
+    });
+});
